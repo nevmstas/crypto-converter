@@ -2,44 +2,13 @@ import React, { useEffect, useState} from 'react';
 import Container from '@material-ui/core/Container';
 import './App.css';
 import axios from 'axios'
-import { makeStyles } from '@material-ui/core/styles';
+import {useStyles} from './styles'
 import Grid from '@material-ui/core/Grid';
 
 import {TCoin} from './types/types'
 
 import { CryptoTable } from './components/CryptoTable/CryptoTable'
 import { ConverterBlock } from './components/ConverterBlock/ConverterBlock'
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(10),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  currencyInput:{
-    width:'75%'
-  },
-  inputCurrencyBox:{
-    display:'flex',
-    justifyContent:'space-between',
-    alignItems:'center',
-    marginBottom:'10px'
-  },
-  table: {
-    minWidth: 650,
-  },
-  iconStyle:{
-    width: 30,
-    borderRadius: '50%'
-  }
-}));
 
 function App() {
   const classes = useStyles();
