@@ -15,7 +15,9 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) =>{
     return (
         <Paper className={classes.paper}>
             <div className= {classes.inputCurrencyBox}>
+
               <TextField className={classes.currencyInput}id="standard-basic" label="Summ" />
+
               <FormControl className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">Currency</InputLabel>
                 <Select
@@ -29,8 +31,11 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) =>{
                 </Select>
               </FormControl>
             </div>
+
             <div className= {classes.inputCurrencyBox}>
+
               <TextField className={classes.currencyInput}id="standard-basic" label="Summ" />
+
               <FormControl className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">Currency</InputLabel>
                 <Select
@@ -43,6 +48,7 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) =>{
                   <MenuItem value={30}>Thirty</MenuItem>
                 </Select>
               </FormControl>
+
             </div>
             <Typography variant="h6" component="h1">
                 0,014 USD

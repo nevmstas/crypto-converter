@@ -4,16 +4,19 @@ import './App.css';
 import axios from 'axios'
 import {useStyles} from './styles'
 import Grid from '@material-ui/core/Grid';
-
+import {useDispatch, useSelector} from 'react-redux'
 import {TCoin} from './types/types'
+
+import { fetchCoins, FETCH_COINS} from './redux/actions'
 
 import { CryptoTable } from './components/CryptoTable/CryptoTable'
 import { ConverterBlock } from './components/ConverterBlock/ConverterBlock'
 
 function App() {
   const classes = useStyles();
-  const ClassesContext = React.createContext(classes)
-  const [allCoins, setallCoins] = useState<Array<TCoin>>([])
+
+  const dispatch = useDispatch()
+  const allCoinsTest = useSelector((state: any) => state.coins.coins)
 
   useEffect(() => {
     axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD').then(({ data }) =>{
@@ -28,23 +31,21 @@ function App() {
         }
         return obj
       })
-      setallCoins(coins)
+      dispatch(fetchCoins(coins))
     })
   }, [classes])
 
   return (
-    <ClassesContext.Provider value={classes}>
       <Container maxWidth="md" className={classes.root}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <ConverterBlock classes = {classes}/>      
           </Grid>
           <Grid item xs={12}>
-            <CryptoTable classes={classes} items={allCoins}/>
+            <CryptoTable classes={classes} items={allCoinsTest}/>
           </Grid>
         </Grid>
       </Container>
-    </ClassesContext.Provider>
   );
 }
 
