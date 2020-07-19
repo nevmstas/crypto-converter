@@ -27,5 +27,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     iconStyle:{
       width: 30,
       borderRadius: '50%'
+    },
+    redPrice:{
+      backgroundColor: '#ff9999'
+    },
+    greenPrice:{
+      backgroundColor: '#c6ffb3'
     }
   }));

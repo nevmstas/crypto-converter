@@ -7,11 +7,19 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
 
+import {useSelector} from 'react-redux'
+
+
+import {TCoin} from '../../types/types'
+
 interface IConverterBlock{
     classes: any
 }
 
 export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) =>{
+
+    const allCoins = useSelector((state: any) => state.coins.coins)
+
     return (
         <Paper className={classes.paper}>
             <div className= {classes.inputCurrencyBox}>
@@ -25,9 +33,8 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) =>{
                   id="demo-simple-select"
                   value={10}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+
+                  {allCoins.map((coin: TCoin) => <MenuItem value={coin.name}>{coin.name}</MenuItem>)}
                 </Select>
               </FormControl>
             </div>
@@ -43,9 +50,7 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) =>{
                   id="demo-simple-select"
                   value={10}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  {allCoins.map((coin: TCoin) => <MenuItem value={coin.name}>{coin.name}</MenuItem>)}
                 </Select>
               </FormControl>
 

@@ -8,6 +8,9 @@ import TableRow from '@material-ui/core/TableRow';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from '@material-ui/core/Paper';
 
+import Price from './Price'
+
+
 import {TCoin} from '../../types/types'
 
 interface ICryptoTable{
@@ -15,7 +18,8 @@ interface ICryptoTable{
     classes: any
 }
 
-export const CryptoTable: React.FC<ICryptoTable> = ({ items, classes }) =>{
+export const CryptoTable: React.FC<ICryptoTable> = ({ items, classes }) =>{    
+
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
@@ -25,17 +29,18 @@ export const CryptoTable: React.FC<ICryptoTable> = ({ items, classes }) =>{
                   <TableCell align="left">Fullname</TableCell>
                   <TableCell align="left">Name</TableCell>
                   <TableCell align="left">Price</TableCell>
-                  <TableCell align="right">Volume 24 hour</TableCell>
+                  <TableCell align="left">Volume 24 hour</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 { !items.length ? <CircularProgress color="secondary" /> : items.map((coin) => (
                   
                   <TableRow key={coin.id}>
-                    <TableCell component="th" scope="row"><img className={classes.iconStyle} src={coin.imageUrl}></img></TableCell>
+                    <TableCell component="th" scope="row"><img alt= "icon" className={classes.iconStyle} src={coin.imageUrl}></img></TableCell>
                     <TableCell align="left">{coin.fullName}</TableCell>
                     <TableCell align="left">{coin.name}</TableCell>
-                    <TableCell align="left">${coin.price}</TableCell>
+                    {/* <TableCell align="left" className={classes.greenPrice}>${coin.price}</TableCell> */}
+                    <Price price= {coin.price} classes = {classes}></Price>
                     <TableCell align="left">${coin.volume24hour}</TableCell>
                   </TableRow>
                 ))}
