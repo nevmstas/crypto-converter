@@ -28,8 +28,8 @@ export const fetchCoinsAsync = () => async (dispatch: any)=>{
           name: coin.CoinInfo.Name,
           fullName: coin.CoinInfo.FullName,
           imageUrl: `https://www.cryptocompare.com${coin.CoinInfo.ImageUrl}`,
-          price: coin.RAW.USD.PRICE.toFixed(2),
-          volume24hour: coin.RAW.USD.VOLUME24HOUR.toFixed(2)
+          price: coin.RAW.USD.PRICE.toFixed(3),
+          volume24hour: coin.RAW.USD.VOLUME24HOUR.toFixed(3)
         }
         return obj
     })

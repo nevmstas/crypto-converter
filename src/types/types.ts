@@ -6,3 +6,8 @@ export interface TCoin {
     price: number
     volume24hour: number
 }
+
+export type TSelectedCoin = {
+    name: string
+    price: number | null
+}

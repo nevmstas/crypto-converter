@@ -10,6 +10,9 @@ import Paper from '@material-ui/core/Paper';
 
 import Price from './Price'
 
+import {useDispatch} from 'react-redux'
+import {setSelectedCoin} from './../../redux/actions'
+
 
 import {TCoin} from '../../types/types'
 
@@ -19,10 +22,10 @@ interface ICryptoTable{
 }
 
 export const CryptoTable: React.FC<ICryptoTable> = ({ items, classes }) =>{    
-
+    const dispatch = useDispatch()
     return (
         <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
+            <Table stickyHeader className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
@@ -35,7 +38,7 @@ export const CryptoTable: React.FC<ICryptoTable> = ({ items, classes }) =>{
               <TableBody>
                 { !items.length ? <CircularProgress color="secondary" /> : items.map((coin) => (
                   
-                  <TableRow key={coin.id}>
+                  <TableRow hover key={coin.id} onClick={()=>{dispatch(setSelectedCoin({name:coin.name, price: coin.price}))}}>
                     <TableCell component="th" scope="row"><img alt= "icon" className={classes.iconStyle} src={coin.imageUrl}></img></TableCell>
                     <TableCell align="left">{coin.fullName}</TableCell>
                     <TableCell align="left">{coin.name}</TableCell>

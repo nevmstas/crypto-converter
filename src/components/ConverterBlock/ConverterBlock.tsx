@@ -1,11 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import Typography from '@material-ui/core/Typography';
 
 import {useSelector} from 'react-redux'
 
@@ -17,24 +16,26 @@ interface IConverterBlock{
 }
 
 export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) =>{
-
+    const [selectedOutCoin, setSelectedOutCoin] = useState('USD')
     const allCoins = useSelector((state: any) => state.coins.coins)
-
+    const selectedCoin = useSelector((state: any) => state.converter.selectedCoin)
+    
     return (
         <Paper className={classes.paper}>
             <div className= {classes.inputCurrencyBox}>
 
-              <TextField className={classes.currencyInput}id="standard-basic" label="Summ" />
+              <TextField className={classes.currencyInput} id="standard-basic" label="Summ"/>
 
               <FormControl className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">Currency</InputLabel>
                 <Select
+                  className= {classes.selectEmpty}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={10}
+                  value={selectedCoin.name || 0}
                 >
 
-                  {allCoins.map((coin: TCoin) => <MenuItem value={coin.name}>{coin.name}</MenuItem>)}
+                  {allCoins.map((coin: TCoin) => <MenuItem key={coin.id} value={coin.name}>{coin.name}</MenuItem>)}
                 </Select>
               </FormControl>
             </div>
@@ -46,18 +47,17 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) =>{
               <FormControl className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">Currency</InputLabel>
                 <Select
+                  className= {classes.selectEmpty}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={10}
+                  value={selectedOutCoin}
+                  onChange={(e : any)=>{setSelectedOutCoin(e.target.value)}}
                 >
-                  {allCoins.map((coin: TCoin) => <MenuItem value={coin.name}>{coin.name}</MenuItem>)}
+                <MenuItem  value='USD'>USD</MenuItem>
+                  {allCoins.map((coin: TCoin) => <MenuItem key={coin.id} value={coin.name}>{coin.name}</MenuItem>)}
                 </Select>
               </FormControl>
-
             </div>
-            <Typography variant="h6" component="h1">
-                0,014 USD
-            </Typography>
           </Paper>
     )
 }

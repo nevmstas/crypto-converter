@@ -12,14 +12,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
       margin: theme.spacing(1),
       minWidth: 120,
     },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+      width: 70
+    },
     currencyInput:{
-      width:'75%'
+      width:'85%'
     },
     inputCurrencyBox:{
       display:'flex',
       justifyContent:'space-between',
       alignItems:'center',
-      marginBottom:'10px'
+      marginBottom:'30px'
     },
     table: {
       minWidth: 650,
