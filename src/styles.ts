@@ -38,4 +38,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
   greenPrice: {
     backgroundColor: "#c6ffb3",
   },
+  coinRow: {
+    cursor: "pointer",
+  },
 }));

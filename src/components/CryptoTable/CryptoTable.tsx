@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -22,6 +22,7 @@ interface ICryptoTable {
 
 export const CryptoTable: React.FC<ICryptoTable> = ({ items, classes }) => {
   const dispatch = useDispatch();
+
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader className={classes.table} aria-label="simple table">
@@ -41,6 +42,7 @@ export const CryptoTable: React.FC<ICryptoTable> = ({ items, classes }) => {
             items.map((coin) => (
               <TableRow
                 hover
+                className={classes.coinRow}
                 key={coin.id}
                 onClick={() => {
                   dispatch(

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
@@ -21,13 +21,34 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) => {
     (state: any) => state.converter.selectedCoin
   );
 
+  const [value2, setValue2] = useState(0);
+
+  function getPrice(): number {
+    const price = allCoins.find((x: any) => x.name === selectedOutCoin)?.price;
+    return price;
+  }
+
+  useEffect(() => {}, []);
+
   return (
     <Paper className={classes.paper}>
       <div className={classes.inputCurrencyBox}>
         <TextField
           className={classes.currencyInput}
           id="standard-basic"
+          type="number"
           label="Summ"
+          onChange={(e: any) => {
+            console.log(
+              "(" +
+                e.target.value +
+                "*" +
+                selectedCoin.price +
+                ")/" +
+                getPrice()
+            );
+            setValue2((e.target.value * selectedCoin.price) / getPrice());
+          }}
         />
 
         <FormControl className={classes.formControl}>
@@ -51,7 +72,9 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) => {
         <TextField
           className={classes.currencyInput}
           id="standard-basic"
+          type="number"
           label="Summ"
+          value={value2}
         />
 
         <FormControl className={classes.formControl}>
@@ -65,7 +88,6 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) => {
               setSelectedOutCoin(e.target.value);
             }}
           >
-            <MenuItem value="USD">USD</MenuItem>
             {allCoins.map((coin: TCoin) => (
               <MenuItem key={coin.id} value={coin.name}>
                 {coin.name}

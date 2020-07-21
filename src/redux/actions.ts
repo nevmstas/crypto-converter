@@ -3,6 +3,7 @@ import { TSelectedCoin } from "./../types/types";
 
 export const FETCH_COINS = "FETCH_COINS";
 export const SET_SELECTED_COIN = "SET_SELECTED_COIN";
+export const SET_SELECTED_COIN_BOT = "SET_SELECTED_COIN_BOT";
 
 type TFetchCoins = {
   type: typeof FETCH_COINS;
@@ -27,5 +28,13 @@ export const setSelectedCoin = (
   return {
     type: SET_SELECTED_COIN,
     payload: selectedCoin,
+  };
+};
+export const setSelectedCoinBot = (
+  selectedCoinBot: TSelectedCoin
+): TsetSelectedCoin => {
+  return {
+    type: SET_SELECTED_COIN,
+    payload: selectedCoinBot,
   };
 };
