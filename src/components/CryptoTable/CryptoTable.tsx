@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -59,7 +59,6 @@ export const CryptoTable: React.FC<ICryptoTable> = ({ items, classes }) => {
                 </TableCell>
                 <TableCell align="left">{coin.fullName}</TableCell>
                 <TableCell align="left">{coin.name}</TableCell>
-                {/* <TableCell align="left" className={classes.greenPrice}>${coin.price}</TableCell> */}
                 <Price price={coin.price} classes={classes}></Price>
                 <TableCell align="left">${coin.volume24hour}</TableCell>
               </TableRow>

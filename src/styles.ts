@@ -2,7 +2,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    padding: theme.spacing(10),
+    padding: theme.spacing(5),
   },
   paper: {
     padding: theme.spacing(2),
@@ -39,6 +39,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "#c6ffb3",
   },
   coinRow: {
+    cursor: "pointer",
+  },
+  ghIcon: {
+    width: "50px",
     cursor: "pointer",
   },
 }));

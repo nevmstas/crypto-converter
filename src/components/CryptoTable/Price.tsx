@@ -1,11 +1,14 @@
 import React from "react";
 import TableCell from "@material-ui/core/TableCell";
 import usePrevious from "./../hooks/usePrevious";
-
-function Price({ price, classes }) {
+type TPriceComponent = {
+  price: number;
+  classes: any;
+};
+const Price: React.SFC<TPriceComponent> = ({ price, classes }) => {
   const prevPrice = usePrevious(price);
 
-  function defineColor(oldPrice, newPrice) {
+  function defineColor(oldPrice: number | undefined, newPrice: number) {
     return oldPrice === newPrice || oldPrice === undefined
       ? null
       : oldPrice > newPrice
@@ -18,6 +21,6 @@ function Price({ price, classes }) {
       ${price}
     </TableCell>
   );
-}
+};
 
 export default Price;

@@ -8,7 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCoinsAsync } from "./redux/coinsReducer";
 import { CryptoTable } from "./components/CryptoTable/CryptoTable";
 import { ConverterBlock } from "./components/ConverterBlock/ConverterBlock";
-
+import Paper from "@material-ui/core/Paper";
+import GitHubIcon from "./icons/GitHub-Mark.png";
 function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -24,6 +25,13 @@ function App() {
   return (
     <Container maxWidth="md" className={classes.root}>
       <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Paper elevation={0} className={classes.paper}>
+            <a href="https://github.com/nevmstas">
+              <img alt="github" className={classes.ghIcon} src={GitHubIcon} />
+            </a>
+          </Paper>
+        </Grid>
         <Grid item xs={12}>
           <ConverterBlock classes={classes} />
         </Grid>

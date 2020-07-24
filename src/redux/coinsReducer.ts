@@ -1,6 +1,6 @@
 import { FETCH_COINS } from "./actions";
 import { TCoin } from "./../types/types";
-import { fetchCoins, setSelectedCoin, setSelectedCoinBot } from "./actions";
+import { fetchCoins } from "./actions";
 import axios from "axios";
 
 type initialStateType = {

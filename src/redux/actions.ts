@@ -35,6 +35,7 @@ type TsetSelectedCoinBot = {
   type: typeof SET_SELECTED_COIN_BOT;
   payload: TSelectedCoin;
 };
+
 export const setSelectedCoinBot = (
   selectedCoinBot: TSelectedCoin
 ): TsetSelectedCoinBot => {
