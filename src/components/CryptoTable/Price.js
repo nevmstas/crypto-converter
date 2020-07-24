@@ -1,13 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import TableCell from "@material-ui/core/TableCell";
-
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
+import usePrevious from "./../hooks/usePrevious";
 
 function Price({ price, classes }) {
   const prevPrice = usePrevious(price);

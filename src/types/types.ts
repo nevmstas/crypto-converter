@@ -8,6 +8,6 @@ export interface TCoin {
 }
 
 export type TSelectedCoin = {
-  name: string;
-  price: number | null;
+  name: string | null | unknown;
+  price: number | null | unknown;
 };

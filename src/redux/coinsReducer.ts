@@ -1,6 +1,6 @@
 import { FETCH_COINS } from "./actions";
 import { TCoin } from "./../types/types";
-import { fetchCoins } from "./actions";
+import { fetchCoins, setSelectedCoin, setSelectedCoinBot } from "./actions";
 import axios from "axios";
 
 type initialStateType = {
@@ -17,7 +17,7 @@ export const coinsReducer = (
 ): initialStateType => {
   switch (action.type) {
     case FETCH_COINS:
-      return { ...state, coins: action.payload };
+      return { ...state, coins: [...action.payload] };
     default:
       return state;
   }

@@ -31,7 +31,6 @@ export const converterReducer = (
           price: action.payload.price,
         },
       };
-
     case SET_SELECTED_COIN_BOT:
       return {
         ...state,

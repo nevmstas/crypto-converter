@@ -6,7 +6,9 @@ import Select from "@material-ui/core/Select";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setSelectedCoin } from "./../../redux/actions";
+import { setSelectedCoinBot } from "./../../redux/actions";
 
 import { TCoin } from "../../types/types";
 
@@ -15,20 +17,46 @@ interface IConverterBlock {
 }
 
 export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) => {
-  const [selectedOutCoin, setSelectedOutCoin] = useState("USD");
+  const dispatch = useDispatch();
   const allCoins = useSelector((state: any) => state.coins.coins);
+
   const selectedCoin = useSelector(
     (state: any) => state.converter.selectedCoin
   );
+  const selectedCoinBot = useSelector(
+    (state: any) => state.converter.selectedCoinBot
+  );
 
-  const [value2, setValue2] = useState(0);
-
-  function getPrice(): number {
-    const price = allCoins.find((x: any) => x.name === selectedOutCoin)?.price;
+  function findPriceByName(name: string): number {
+    const price = allCoins.find((x: any) => x.name === name)?.price;
     return price;
   }
 
-  useEffect(() => {}, []);
+  const [firstValue, setFirstValue] = useState<number>(1);
+  const [secondValue, setSecondValue] = useState<number>(1);
+
+  function calculate(count: number) {
+    const result = (count * selectedCoin.price) / selectedCoinBot.price;
+    setSecondValue(parseFloat(result.toFixed(2)));
+  }
+
+  function botInputCalculate(count: number) {
+    const result = (count * selectedCoinBot.price) / selectedCoin.price;
+    setFirstValue(parseFloat(result.toFixed(2)));
+  }
+
+  useEffect(() => {
+    const obj = {
+      name: allCoins.length ? Object.values(allCoins[0])[1] : null,
+      price: allCoins.length ? Object.values(allCoins[0])[4] : null,
+    };
+    dispatch(setSelectedCoin(obj));
+    dispatch(setSelectedCoinBot(obj));
+  }, [allCoins.length]);
+
+  useEffect(() => {
+    calculate(firstValue);
+  }, [selectedCoin, selectedCoinBot]);
 
   return (
     <Paper className={classes.paper}>
@@ -38,16 +66,10 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) => {
           id="standard-basic"
           type="number"
           label="Summ"
+          value={firstValue}
           onChange={(e: any) => {
-            console.log(
-              "(" +
-                e.target.value +
-                "*" +
-                selectedCoin.price +
-                ")/" +
-                getPrice()
-            );
-            setValue2((e.target.value * selectedCoin.price) / getPrice());
+            setFirstValue(e.target.value);
+            calculate(e.target.value);
           }}
         />
 
@@ -57,7 +79,15 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) => {
             className={classes.selectEmpty}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={selectedCoin.name || 0}
+            value={selectedCoin.name}
+            onChange={(e: any) => {
+              dispatch(
+                setSelectedCoin({
+                  name: e.target.value,
+                  price: findPriceByName(e.target.value),
+                })
+              );
+            }}
           >
             {allCoins.map((coin: TCoin) => (
               <MenuItem key={coin.id} value={coin.name}>
@@ -74,7 +104,11 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) => {
           id="standard-basic"
           type="number"
           label="Summ"
-          value={value2}
+          value={secondValue || 0}
+          onChange={(e: any) => {
+            setSecondValue(e.target.value);
+            botInputCalculate(e.target.value);
+          }}
         />
 
         <FormControl className={classes.formControl}>
@@ -83,9 +117,14 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) => {
             className={classes.selectEmpty}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={selectedOutCoin}
+            value={selectedCoinBot.name}
             onChange={(e: any) => {
-              setSelectedOutCoin(e.target.value);
+              dispatch(
+                setSelectedCoinBot({
+                  name: e.target.value,
+                  price: findPriceByName(e.target.value),
+                })
+              );
             }}
           >
             {allCoins.map((coin: TCoin) => (
