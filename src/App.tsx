@@ -10,7 +10,6 @@ import { CryptoTable } from "./components/CryptoTable/CryptoTable";
 import { ConverterBlock } from "./components/ConverterBlock/ConverterBlock";
 import Paper from "@material-ui/core/Paper";
 import GitHubIcon from "./icons/GitHub-Mark.png";
-import CoinGraph from "./components/Graph/CoinGraph";
 
 function App() {
   const classes = useStyles();
@@ -25,27 +24,48 @@ function App() {
   }, []);
 
   return (
-    <Container maxWidth="md" className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Paper elevation={0} className={classes.paper}>
-            <a href="https://github.com/nevmstas">
-              <img alt="github" className={classes.ghIcon} src={GitHubIcon} />
-            </a>
-          </Paper>
+    <div className={classes.mainContainer}>
+      <Container maxWidth="md" className={classes.root}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Paper elevation={0} className={classes.paper}>
+              <div>
+                <div className={classes.description}>
+                  <h2 className={classes.heading}>crypto-converter</h2>
+                  <p>
+                    This app will be helpfull for people who want to convert
+                    some cryptocurrency to another, with comfortable. Also you
+                    can watch on currently price, cuz of it updates every 60sec.
+                    If price up, currency block'll be{" "}
+                    <span className={classes.greenPrice}>green</span>, owerise{" "}
+                    <span className={classes.redPrice}>red</span>. You can click
+                    on table row to automatically choose first field currency.
+                    When you filling in any field, programm automatically
+                    calculate result!
+                  </p>
+                  <div>
+                    <p>Also you can check my other projects on github</p>
+                    <a href="https://github.com/nevmstas">
+                      <img
+                        alt="github"
+                        className={classes.ghIcon}
+                        src={GitHubIcon}
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <ConverterBlock classes={classes} />
+          </Grid>
+          <Grid item xs={12}>
+            <CryptoTable classes={classes} items={allCoins} />
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <ConverterBlock classes={classes} />
-        </Grid>
-        <Grid item xs={12}>
-          <CryptoTable classes={classes} items={allCoins} />
-        </Grid>
-
-        <Grid item xs={12}>
-          <CoinGraph items={allCoins} classes={classes} />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </div>
   );
 }
 

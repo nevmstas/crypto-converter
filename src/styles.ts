@@ -1,6 +1,11 @@
 import { makeStyles, Theme } from "@material-ui/core/styles";
+import { grey } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme: Theme) => ({
+  mainContainer: {
+    backgroundColor: "#e6e6e6",
+    color: "#666666",
+  },
   root: {
     padding: theme.spacing(5),
   },
@@ -45,8 +50,22 @@ export const useStyles = makeStyles((theme: Theme) => ({
   coinRow: {
     cursor: "pointer",
   },
+
+  description: {
+    fontSize: "17px",
+    color: "#666666",
+  },
+  heading: {
+    textTransform: "uppercase",
+    color: "#404040",
+  },
   ghIcon: {
     width: "50px",
     cursor: "pointer",
+  },
+  ghContainer: {
+    display: "flex",
+    textDecoration: "none",
+    justifyContent: "center",
   },
 }));
