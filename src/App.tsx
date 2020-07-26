@@ -10,6 +10,8 @@ import { CryptoTable } from "./components/CryptoTable/CryptoTable";
 import { ConverterBlock } from "./components/ConverterBlock/ConverterBlock";
 import Paper from "@material-ui/core/Paper";
 import GitHubIcon from "./icons/GitHub-Mark.png";
+import CoinGraph from "./components/Graph/CoinGraph";
+
 function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -37,6 +39,10 @@ function App() {
         </Grid>
         <Grid item xs={12}>
           <CryptoTable classes={classes} items={allCoins} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <CoinGraph items={allCoins} classes={classes} />
         </Grid>
       </Grid>
     </Container>

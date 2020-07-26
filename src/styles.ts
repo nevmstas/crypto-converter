@@ -8,6 +8,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
   },
+  chartContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,

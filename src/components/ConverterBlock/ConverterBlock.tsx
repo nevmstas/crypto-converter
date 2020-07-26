@@ -37,12 +37,12 @@ export const ConverterBlock: React.FC<IConverterBlock> = ({ classes }) => {
 
   function calculate(count: number) {
     const result = (count * selectedCoin.price) / selectedCoinBot.price;
-    setSecondValue(parseFloat(result.toFixed(2)));
+    setSecondValue(parseFloat(result.toFixed(4)));
   }
 
   function botInputCalculate(count: number) {
     const result = (count * selectedCoinBot.price) / selectedCoin.price;
-    setFirstValue(parseFloat(result.toFixed(2)));
+    setFirstValue(parseFloat(result.toFixed(4)));
   }
 
   useEffect(() => {
