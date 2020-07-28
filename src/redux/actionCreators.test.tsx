@@ -1,6 +1,4 @@
-import React from "react";
 import * as actions from "./actions";
-import { TCoin } from "./../types/types";
 
 describe("actions", () => {
   it("should create an action to fetch coins", () => {
