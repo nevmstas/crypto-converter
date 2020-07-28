@@ -34,14 +34,14 @@ function App() {
                   <h2 className={classes.heading}>crypto-converter</h2>
                   <p>
                     This app will be helpfull for people who want to convert
-                    some cryptocurrency to another, with comfortable. Also you
-                    can watch on currently price, cuz of it updates every 60sec.
-                    If price up, currency block'll be{" "}
-                    <span className={classes.greenPrice}>green</span>, owerise{" "}
+                    some cryptocurrency to another easily. Also you can monitor
+                    currently price, because of it updates every 60sec. If price
+                    up, currency block'll be{" "}
+                    <span className={classes.greenPrice}>green</span>, otherwise{" "}
                     <span className={classes.redPrice}>red</span>. You can click
-                    on table row to automatically choose first field currency.
-                    When you filling in any field, programm automatically
-                    calculate result!
+                    on table row to automatically choose first field of
+                    currency. Once you filled any field, programm'll
+                    automatically calculate result!
                   </p>
                   <div>
                     <p>Also you can check my other projects on github</p>
