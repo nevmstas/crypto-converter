@@ -29,4 +29,24 @@ describe("actions", () => {
     };
     expect(actions.fetchCoins(coins)).toEqual(expectedAction);
   });
+
+  it("should create an action to set selected coin", () => {
+    const seletedCoin = { name: "TC", price: 1000 };
+
+    const expectedAction = {
+      type: actions.SET_SELECTED_COIN,
+      payload: seletedCoin,
+    };
+    expect(actions.setSelectedCoin(seletedCoin)).toEqual(expectedAction);
+  });
+
+  it("should create an action to set second selected coin", () => {
+    const seletedCoin = { name: "TC", price: 1000 };
+
+    const expectedAction = {
+      type: actions.SET_SELECTED_COIN_BOT,
+      payload: seletedCoin,
+    };
+    expect(actions.setSelectedCoinBot(seletedCoin)).toEqual(expectedAction);
+  });
 });
