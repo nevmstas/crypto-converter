@@ -5,6 +5,7 @@ import axios from "axios";
 import { ThunkAction } from "redux-thunk";
 import { Action } from "redux";
 import { RootState } from "./rootReducer";
+import { Dispatch } from "react";
 
 type initialStateType = {
   coins: Array<TCoin>;
@@ -31,7 +32,7 @@ export const fetchCoinsAsync = (): ThunkAction<
   RootState,
   unknown,
   Action<void>
-> => async (dispatch: any) => {
+> => async (dispatch: Dispatch<Action>) => {
   const data = await axios
     .get(
       "https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD"
